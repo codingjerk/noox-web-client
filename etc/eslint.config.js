@@ -35,7 +35,6 @@ const rules = {
   "handle-callback-err": ["error"],
   "id-blacklist": ["error", "l", "i", "j"],
   "id-length": ["error", {"min": 3, "exceptions": ["_", "_1", "_2", "_3"]}],
-  "id-match": ["error", "^[a-z]+([A-Z][a-z]+)*$"],
   "implicit-arrow-linebreak": ["error", "beside"],
   "indent": ["error", 2],
   "init-declarations": ["error", "always"],
@@ -182,6 +181,7 @@ const config = {
     "browser": true,
     "es6": true,
     "node": true,
+    "mocha": true,
   },
   "extends": [
     "eslint:recommended",

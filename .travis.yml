@@ -12,4 +12,7 @@ install:
   - make deps
 
 script:
-  - make lint
+  - make
+
+after_success:
+  - make report-coverage
