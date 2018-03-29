@@ -12,7 +12,7 @@ deps-lint:
 	@$(NPM) eslint eslint-plugin-react
 
 deps-test:
-	@$(NPM) mocha chai enzyme enzyme-adapter-react-16 sinon nyc coveralls
+	@$(NPM) mocha chai enzyme enzyme-adapter-react-16 chai-enzyme@beta jsdom sinon nyc coveralls
 
 deps-build:
 	@$(NPM) babel-core babel-preset-env babel-preset-stage-0 babel-preset-react
@@ -23,10 +23,11 @@ deps-libs:
 deps: check-npm deps-lint deps-test deps-build deps-libs
 
 lint:
-	@$(BIN)/eslint --config etc/eslint.config.js src/ spec/
+	@$(BIN)/eslint --config etc/eslint.config.js src/
+	@$(BIN)/eslint --config etc/eslint.spec.config.js spec/
 
 test:
-	@$(BIN)/mocha -r spec/setup spec/
+	@NODE_PATH="./src/" $(BIN)/mocha -r spec/setup spec/**/*.js
 
 coverage:
 	@$(BIN)/nyc --reporter=lcov --reporter=text make -s test
