@@ -1,4 +1,4 @@
-import * as Icons from "components/icons";
+import Icons from "components/icons";
 
 const testIcon = Icon => {
   it("should render without error", () => {
