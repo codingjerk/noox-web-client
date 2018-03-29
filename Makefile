@@ -5,6 +5,29 @@ NPM=npm install --no-package-lock --no-save --no-progress --no-send-metrics --lo
 
 all: lint test coverage
 
+lint:
+	@$(BIN)/eslint --config etc/eslint.config.js src/
+	@$(BIN)/eslint --config etc/eslint.spec.config.js spec/
+
+test:
+	@NODE_PATH="./src/" $(BIN)/mocha -r spec/setup --recursive spec/
+
+coverage:
+	@$(BIN)/nyc --reporter=lcov --reporter=text make -s test
+	@$(BIN)/nyc check-coverage --lines 50 --per-file
+
+watch:
+	@while true; do \
+	  clear; \
+	  make -s $(TARGETS); \
+	  inotifywait -qqre close_write .; \
+	done
+
+report-coverage: coverage
+	@cat ./coverage/lcov.info | $(BIN)/coveralls
+
+deps: check-npm deps-lint deps-test deps-build deps-libs
+
 check-npm:
 	@command -v npm > /dev/null || (echo "Please install node/npm to get dependencies" && exit 1)
 
@@ -19,19 +42,3 @@ deps-build:
 
 deps-libs:
 	@$(NPM) react react-dom
-
-deps: check-npm deps-lint deps-test deps-build deps-libs
-
-lint:
-	@$(BIN)/eslint --config etc/eslint.config.js src/
-	@$(BIN)/eslint --config etc/eslint.spec.config.js spec/
-
-test:
-	@NODE_PATH="./src/" $(BIN)/mocha -r spec/setup spec/**/*.js
-
-coverage:
-	@$(BIN)/nyc --reporter=lcov --reporter=text make -s test
-	@$(BIN)/nyc check-coverage --lines 50 --per-file
-
-report-coverage: coverage
-	@cat ./coverage/lcov.info | $(BIN)/coveralls

@@ -1,5 +1,6 @@
 const rules = {
   "no-undef": ["off"],
+  "no-unused-expressions": ["off"],
   "react/react-in-jsx-scope": ["off"],
 };
 

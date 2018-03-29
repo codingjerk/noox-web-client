@@ -14,6 +14,16 @@ const testIcon = Icon => {
     const icon = mount(<Icon />);
     expect(icon).to.have.descendants("path");
   });
+
+  it("should get color from props", () => {
+    const icon = mount(<Icon color="#FF0000"/>);
+    expect(icon).to.contain.html().match(/#FF0000/);
+  });
+
+  it("should use black color by default", () => {
+    const icon = mount(<Icon />);
+    expect(icon).to.contain.html().match(/#000000/);
+  });
 };
 
 describe("Icons", () => {
