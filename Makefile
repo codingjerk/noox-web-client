@@ -1,9 +1,12 @@
 BIN=./node_modules/.bin
 NPM=npm install --no-package-lock --no-save --no-progress --no-send-metrics --loglevel=error
 
-.PHONY: test coverage
+.PHONY: test coverage build
 
-all: lint test coverage
+all: lint test coverage build
+
+build:
+	@$(BIN)/webpack --config etc/webpack.config.js
 
 lint:
 	@$(BIN)/eslint --config etc/eslint.config.js src/
@@ -35,10 +38,10 @@ deps-lint:
 	@$(NPM) eslint eslint-plugin-react
 
 deps-test:
-	@$(NPM) mocha chai enzyme enzyme-adapter-react-16 chai-enzyme@beta jsdom sinon nyc coveralls
+	@$(NPM) mocha chai enzyme enzyme-adapter-react-16 chai-enzyme@beta jsdom nyc coveralls
 
 deps-build:
-	@$(NPM) babel-core babel-preset-env babel-preset-stage-0 babel-preset-react
+	@$(NPM) babel-core babel-preset-env babel-preset-stage-0 babel-preset-react webpack webpack-cli babel-loader html-webpack-plugin
 
 deps-libs:
-	@$(NPM) react react-dom
+	@$(NPM) react react-dom prop-types
