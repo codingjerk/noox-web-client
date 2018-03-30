@@ -5,6 +5,9 @@ NPM=npm install --no-package-lock --no-save --no-progress --no-send-metrics --lo
 
 all: lint test coverage build
 
+start:
+	@$(BIN)/webpack-serve --loglevel warn --config etc/webpack.config.js $(ARGS)
+
 build:
 	@$(BIN)/webpack --config etc/webpack.config.js
 
@@ -41,7 +44,7 @@ deps-test:
 	@$(NPM) mocha chai enzyme enzyme-adapter-react-16 chai-enzyme@beta jsdom nyc coveralls
 
 deps-build:
-	@$(NPM) babel-core babel-preset-env babel-preset-stage-0 babel-preset-react webpack webpack-cli babel-loader html-webpack-plugin
+	@$(NPM) babel-core babel-preset-env babel-preset-stage-0 babel-preset-react webpack webpack-cli babel-loader html-webpack-plugin webpack-serve
 
 deps-libs:
 	@$(NPM) react react-dom prop-types
