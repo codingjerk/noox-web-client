@@ -6,7 +6,7 @@ NPM=npm install --no-package-lock --no-save --no-progress --no-send-metrics --lo
 all: lint test coverage build
 
 start:
-	@$(BIN)/webpack-serve --loglevel warn --config etc/webpack.config.js $(ARGS)
+	@$(BIN)/webpack-serve --log-level warn --config etc/webpack.config.js $(ARGS)
 
 build:
 	@$(BIN)/webpack --config etc/webpack.config.js
