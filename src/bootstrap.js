@@ -8,11 +8,16 @@ const bootstrap = () => {
     module.hot.accept();
   }
 
-  const root = document.createElement("div");
-  document.body.innerHTML = "";
-  document.body.appendChild(root);
+  const divs = document.getElementsByTagName("div");
+  let root = null;
+  if (divs.length > 0) {
+    root = divs[0];
+  } else {
+    root = document.createElement("div");
+    document.body.appendChild(root);
+  }
 
-  render(<Play color="#DE4040"/>, root);
+  render(<Play />, root);
 };
 
 // Bootstraping application in browser

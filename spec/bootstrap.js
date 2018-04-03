@@ -2,7 +2,6 @@ import bootstrap from "bootstrap";
 
 describe("bootstrap", () => {
   beforeEach(() => {
-    document.body.innerHTML = "";
     bootstrap();
   });
 
