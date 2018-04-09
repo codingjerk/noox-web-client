@@ -1,16 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
+import createIcon from "./create-icon";
 
-const Next = ({color}) => <svg>
-  <path fill={color} />
-</svg>;
-
-Next.propTypes = {
-  color: PropTypes.string,
-};
-
-Next.defaultProps = {
-  color: "#000000",
-};
+const Next = createIcon(color => <path fill={color} />);
 
 export default Next;

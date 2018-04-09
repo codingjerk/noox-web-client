@@ -1,16 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
+import createIcon from "./create-icon";
 
-const Previous = ({color}) => <svg>
-  <path fill={color} />
-</svg>;
-
-Previous.propTypes = {
-  color: PropTypes.string,
-};
-
-Previous.defaultProps = {
-  color: "#000000",
-};
+const Previous = createIcon(color => <path fill={color} />);
 
 export default Previous;

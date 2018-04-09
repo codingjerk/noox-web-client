@@ -1,16 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
+import createIcon from "./create-icon";
 
-const Pause = ({color}) => <svg>
-  <path fill={color} />
-</svg>;
-
-Pause.propTypes = {
-  color: PropTypes.string,
-};
-
-Pause.defaultProps = {
-  color: "#000000",
-};
+const Pause = createIcon(color => <path fill={color} />);
 
 export default Pause;
