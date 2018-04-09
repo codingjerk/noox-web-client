@@ -1,22 +1,25 @@
 import React from "react";
 import {render} from "react-dom";
-
 import Play from "./components/icons/play";
 
-const bootstrap = () => {
-  if (module.hot) {
-    module.hot.accept();
-  }
+const newRoot = () => {
+  const root = document.createElement("div");
+  document.body.appendChild(root);
 
+  return root;
+};
+
+const getRoot = () => {
   const divs = document.getElementsByTagName("div");
-  let root = null;
   if (divs.length > 0) {
-    root = divs[0];
-  } else {
-    root = document.createElement("div");
-    document.body.appendChild(root);
+    return divs[0];
   }
 
+  return newRoot();
+};
+
+const bootstrap = () => {
+  const root = getRoot();
   render(<Play />, root);
 };
 
