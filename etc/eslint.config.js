@@ -80,7 +80,7 @@ const rules = {
   "no-lone-blocks": ["error"],
   "no-lonely-if": ["error"],
   "no-loop-func": ["error"],
-  "no-magic-numbers": ["error"],
+  "no-magic-numbers": ["error", {"ignore": [0, 1]}],
   "no-mixed-requires": ["error"],
   "no-multi-assign": ["error"],
   "no-multi-spaces": ["error"],
@@ -180,8 +180,6 @@ const config = {
   "env": {
     "browser": true,
     "es6": true,
-    "node": true,
-    "mocha": true,
   },
   "extends": [
     "eslint:recommended",
